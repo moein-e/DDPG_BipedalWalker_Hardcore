@@ -19,17 +19,17 @@ tau = 0.001
 update_per_step = 1
 eps_start = 1.0
 eps_end = 0.15
-eps_decay = 0.998
+eps_decay = 0.995
 std_dev = 0.8
 seed = 5      
-num_episodes = 10
-smoothing_window = 1
+num_episodes = 2000
+smoothing_window = 50
 
 # Weight and Biases (wandb) parameters ========
-wandb_report = False
+wandb_report = True
 
 if wandb_report:
-    wandb.init(project="BipedalWalker")
+    wandb.init(project="BipedalWalker-Hardcore")
     config = wandb.config
     
     config.gamma = gamma
@@ -53,7 +53,7 @@ np.random.seed(seed)
 torch.manual_seed(seed)
 torch.cuda.manual_seed(seed)
 
-env = gym.make("BipedalWalker-v3")
+env = gym.make("BipedalWalkerHardcore-v3")
 env.seed(seed)
 state_size = len(env.reset())
 num_actions = env.action_space.shape[0]
