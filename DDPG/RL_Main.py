@@ -18,8 +18,8 @@ buffer_size = 1000000
 tau = 0.001
 update_per_step = 1
 eps_start = 1.0
-eps_end = 0.15
-eps_decay = 0.995
+eps_end = 0.20
+eps_decay = 0.99
 std_dev = 0.8
 seed = 5      
 num_episodes = 2000
@@ -60,6 +60,9 @@ num_actions = env.action_space.shape[0]
 
 # Training ####################################################################
 Q_ddpg = DDPGAgent(env, gamma, tau, buffer_size, batch_size, critic_lr, actor_lr, update_per_step, seed)
+
+# Q_ddpg.actor.load_state_dict(torch.load('trained_agent/checkpoint1.pth', map_location=torch.device('cpu')))
+
 if wandb_report: config.actor_nn = str(Q_ddpg.actor)
 if wandb_report: config.critic_nn = str(Q_ddpg.critic)
 if wandb_report: config.noise_type = Q_ddpg.noise.name 
@@ -116,8 +119,8 @@ plt.show()
 if wandb_report: wandb.log({'Actor Loss': wandb.Image(fig4)})
 
 # =============================== TESTING ===================================
-ddpg_return = np.mean([run_episode_ddpg(Q_ddpg_trained, env) for _ in range(5)])
-print(f'Trained DDPG return = {ddpg_return}')
+ddpg_return = np.mean([run_episode_ddpg(Q_ddpg_trained, env) for _ in range(10)])
+print(f'Average DDPG cumulative reward over 10 runs = {ddpg_return:.2f}')
 if wandb_report: wandb.log({'test_return': ddpg_return})
 
 # obs = env.reset()
