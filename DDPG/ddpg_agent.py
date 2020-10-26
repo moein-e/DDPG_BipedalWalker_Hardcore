@@ -1,4 +1,5 @@
 import numpy as np
+import torch
 import wandb
 
 def run_episode_ddpg(Q, env):
@@ -70,6 +71,9 @@ def ddpg_train(env, agent, max_episodes, std_dev, eps_start, eps_end, eps_decay,
         # if episode % 1 == 0:
         #     print(f"DDPG, episode {episode}, eps: {eps:.2f}, return: {training_return:.2f}")
         if wandb_report: wandb.log({'training_return_DDPG': training_return}, step=episode)
+        if episode % 250 == 0:
+            torch.save(agent.actor.state_dict(), f'Checkpoint/checkpoint_actor_episode_{episode}.pth')
+            torch.save(agent.critic.state_dict(), f'Checkpoint/checkpoint_critic_episode_{episode}.pth')
         
     all_actions = np.stack(all_actions)
     all_actions_raw = np.stack(all_actions_raw)

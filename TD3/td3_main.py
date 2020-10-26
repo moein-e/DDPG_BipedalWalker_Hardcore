@@ -55,7 +55,7 @@ if wandb_report:
     config.actor_std_dev = actor_std_dev
     config.actor_noise_bound = actor_noise_bound
     config.actor_update_freq = actor_update_freq
-    config.comment = 'reward/5000; Transfer learning - tanh in nn, noise+clip'
+    config.comment = 'Transfer learning - tanh in nn, noise+clip'
 
 #===================
 np.random.seed(seed)

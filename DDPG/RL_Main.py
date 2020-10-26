@@ -11,18 +11,18 @@ from ddpg_brain import DDPGAgent
 
 # Hyperparameters ============================
 gamma = 0.99   
-critic_lr = 2e-4    
-actor_lr = 6e-5     
+critic_lr = 1e-4    
+actor_lr = 5e-5     
 batch_size = 128
-buffer_size = 1000000
-tau = 0.05
+buffer_size = 500000
+tau = 0.001
 update_per_step = 1
-eps_start = 1.0
-eps_end = 0.15
+eps_start = 0.25
+eps_end = 0.1
 eps_decay = 0.998
-std_dev = 1.5
+std_dev = 1.
 seed = 5      
-num_episodes = 3000
+num_episodes = 2000
 smoothing_window = 50
 
 # Weight and Biases (wandb) parameters ========
@@ -46,7 +46,7 @@ if wandb_report:
     config.seed = seed
     config.num_episodes = num_episodes
     config.smoothing_window = smoothing_window
-    config.comment = 'tanh in nn, noise+clip'
+    config.comment = 'Continue transfer learning run 27; tanh in nn, noise+clip'
 
 #===================
 np.random.seed(seed)
@@ -61,7 +61,7 @@ num_actions = env.action_space.shape[0]
 # Training ####################################################################
 Q_ddpg = DDPGAgent(env, gamma, tau, buffer_size, batch_size, critic_lr, actor_lr, update_per_step, seed)
 
-# Q_ddpg.actor.load_state_dict(torch.load('trained_agent/checkpoint1.pth', map_location=torch.device('cpu')))
+Q_ddpg.actor.load_state_dict(torch.load('checkpoint_colab_hardcore (run_27_wandb).pth', map_location=torch.device('cpu')))
 
 if wandb_report: config.actor_nn = str(Q_ddpg.actor)
 if wandb_report: config.critic_nn = str(Q_ddpg.critic)
