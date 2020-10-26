@@ -11,18 +11,18 @@ from ddpg_brain import DDPGAgent
 
 # Hyperparameters ============================
 gamma = 0.99   
-critic_lr = 3e-4    
-actor_lr = 1e-4     
+critic_lr = 2e-4    
+actor_lr = 6e-5     
 batch_size = 128
 buffer_size = 1000000
-tau = 0.001
+tau = 0.05
 update_per_step = 1
 eps_start = 1.0
-eps_end = 0.20
-eps_decay = 0.99
-std_dev = 0.8
+eps_end = 0.15
+eps_decay = 0.998
+std_dev = 1.5
 seed = 5      
-num_episodes = 2000
+num_episodes = 3000
 smoothing_window = 50
 
 # Weight and Biases (wandb) parameters ========

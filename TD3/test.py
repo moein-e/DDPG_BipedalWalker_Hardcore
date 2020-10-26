@@ -19,14 +19,14 @@ env = gym.make("BipedalWalkerHardcore-v3")
 
 Q_td3 = TD3_Agent(env, gamma, tau, buffer_size, batch_size, critic_lr, actor_lr, actor_std_dev, actor_noise_bound, actor_update_freq, seed)
 
-Q_td3.actor.load_state_dict(torch.load('Checkpoint/checkpoint_actor_episode_1500.pth', map_location=torch.device('cpu')))
+Q_td3.actor.load_state_dict(torch.load('Checkpoint (vocal-mountain-60)/checkpoint_actor_episode_250.pth', map_location=torch.device('cpu')))
 
 # env = gym.wrappers.Monitor(env, "trained_agent/Trained results (run_27_wandb)", force=True)
 obs = env.reset()
 cum_reward = 0
 done = False
-# for _ in range(500):
-while not done:
+for _ in range(500):
+# while not done:
   env.render()
   action = Q_td3.get_action(obs)
   obs, reward, done, info = env.step(action)

@@ -29,7 +29,7 @@ def td3_train(env, agent, max_episodes, std_dev, eps_start, eps_end, eps_decay, 
                 action = np.random.uniform(size=env.env.action_space.shape[0])
                 next_state, reward, done, _ = env.step(action)
                 training_return += reward
-                agent.buffer.add(state, action, reward/5000, next_state, done)
+                agent.buffer.add(state, action, reward, next_state, done)
             
             else:
                 actor_action = agent.get_action(state)
@@ -42,7 +42,7 @@ def td3_train(env, agent, max_episodes, std_dev, eps_start, eps_end, eps_decay, 
                 
                 next_state, reward, done, _ = env.step(action)
                 training_return += reward
-                agent.step(state, action, reward/5000, next_state, done)   
+                agent.step(state, action, reward, next_state, done)   
                 
                 all_actions_raw.append(action_raw)
             all_actions.append(action)
