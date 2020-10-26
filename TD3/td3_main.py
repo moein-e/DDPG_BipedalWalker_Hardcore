@@ -13,7 +13,7 @@ gamma = 0.99
 critic_lr = 1e-4    
 actor_lr = 5e-5     
 batch_size = 128
-buffer_size = 1000000
+buffer_size = 500000
 tau = 0.001
 update_per_step = 1
 eps_start = 1.0
@@ -23,7 +23,7 @@ eps_decay = 0.998
 actor_std_dev = 0.2
 actor_noise_bound = 0.5
 actor_update_freq = 2
-start_train_episode = 1
+start_train_episode = 20
 
 std_dev = 1.2
 seed = 5      
@@ -55,7 +55,7 @@ if wandb_report:
     config.actor_std_dev = actor_std_dev
     config.actor_noise_bound = actor_noise_bound
     config.actor_update_freq = actor_update_freq
-    config.comment = 'Transfer learning - tanh in nn, noise+clip'
+    config.comment = 'Continue transfer learning run 27; tanh in nn, noise+clip'
 
 #===================
 np.random.seed(seed)
@@ -70,7 +70,7 @@ num_actions = env.action_space.shape[0]
 # Training ####################################################################
 Q_td3 = TD3_Agent(env, gamma, tau, buffer_size, batch_size, critic_lr, actor_lr, actor_std_dev, actor_noise_bound, actor_update_freq, seed)
 
-Q_td3.actor.load_state_dict(torch.load('trained_agent/checkpoint_BipedalWalker_actor.pth', map_location=torch.device('cpu')))
+Q_td3.actor.load_state_dict(torch.load('checkpoint_colab_hardcore (run_27_wandb).pth', map_location=torch.device('cpu')))
 
 
 if wandb_report: config.actor_nn = str(Q_td3.actor)

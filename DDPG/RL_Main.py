@@ -26,7 +26,7 @@ num_episodes = 2000
 smoothing_window = 50
 
 # Weight and Biases (wandb) parameters ========
-wandb_report = True
+wandb_report = False
 
 if wandb_report:
     wandb.init(project="BipedalWalker-Hardcore")
