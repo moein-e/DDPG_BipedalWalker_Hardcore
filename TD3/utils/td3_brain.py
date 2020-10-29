@@ -35,7 +35,7 @@ class TD3_Agent:
         self.actor_optimizer  = optim.Adam(self.actor.parameters(), lr=actor_lr)
     
         self.buffer = ReplayBuffer(buffer_maxlen, batch_size, seed)        
-        self.noise = OUNoise(env.action_space.shape[0])
+        self.noise = GaussianNoise(env.action_space.shape[0])
         
     def get_action(self, state):
         state = torch.FloatTensor(state).to(self.device)

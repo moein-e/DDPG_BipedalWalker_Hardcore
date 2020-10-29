@@ -16,9 +16,9 @@ env = gym.make("BipedalWalkerHardcore-v3")
 
 Q_ddpg = DDPGAgent(env, gamma, tau, buffer_size, batch_size, critic_lr, actor_lr, update_per_step, seed)
 
-Q_ddpg.actor.load_state_dict(torch.load('checkpoint_colab_hardcore (run_27_wandb).pth', map_location=torch.device('cpu')))
+Q_ddpg.actor.load_state_dict(torch.load('checkpoint_colab (run 94).pth', map_location=torch.device('cpu')))
 
-# env = gym.wrappers.Monitor(env, "trained_agent/Trained results (run_27_wandb)", force=True)
+env = gym.wrappers.Monitor(env, "trained_agent/Trained results (run_94_wandb)", force=True)
 obs = env.reset()
 cum_reward = 0
 done = False
