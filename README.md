@@ -6,4 +6,4 @@ The hardcore version of **[BipedalWalker](https://gym.openai.com/envs/BipedalWal
 
 Here is the resulting video:
 
-<img src="Trained%20Agent/BipedalWalker_Hardcore_Training.gif" width="800">
+<img src="Trained%20Agent/BipedalWalker_Hardcore_Training.gif" width="650">
