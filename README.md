@@ -1,10 +1,9 @@
 # RL: BipedalWalkerHardcore
 
-Here is my fun side project to train a DDPG agent to learn to walk in the BipedalWalker (Hardcore) environment. 
-The environment is obtained from Gym OpenAI: https://gym.openai.com/envs/BipedalWalkerHardcore-v2/
+The hardcore version of **[BipedalWalker](https://gym.openai.com/envs/BipedalWalkerHardcore-v2/)** is a much harder task than the [original version](https://gym.openai.com/envs/BipedalWalker-v2/). Simple BipedalWalker is trained [here](https://github.com/moein-e/RL_BipedalWalker). 
 
-I have been using DDPG method and here is the latest trained result:
+**DDPG** algorithm is implemented for training the Bipedal Walker (Hardcore) agent. Also, [Ornstein–Uhlenbeck noise](https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process) with decaying standard deviation is used for exploration. In addition, actor neural network parameters are initialized by values obtained from the trained BipedalWalker ([simple version](https://github.com/moein-e/RL_BipedalWalker)).
 
-![ezgif-7-da066fb59de2](https://user-images.githubusercontent.com/58206150/97120396-49b2c180-16dc-11eb-9a2a-4f31afdebc29.gif)
+Here is the resulting video:
 
-This is an ongoing project, better results will be uploaded here soon!
+<img src="Trained%20Agent/BipedalWalker_Hardcore_Training.gif" width="800">
